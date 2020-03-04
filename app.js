@@ -28,7 +28,18 @@ app.get("/contact", (req, res)=> {
   res.render("contact", {contactContent: contactContent})
 })
 
+app.get("/compose", (req, res)=> {
+  res.render("compose")
+})
 
+app.post("/compose", (req, res)=> {
+  var titleAndBody = {
+    title: req.body.postTitle,
+    post: req.body.postBody
+  }
+
+  console.log(titleAndBody.title, titleAndBody.post)
+})
 
 
 
