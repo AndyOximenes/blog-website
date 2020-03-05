@@ -22,7 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("home", { startingContent: homeStartingContent, posts: posts });
+  res.render("home", { 
+    startingContent: homeStartingContent, 
+    posts: posts,
+  });
 });
 
 app.get("/about", (req, res) => {
@@ -44,9 +47,13 @@ app.get("/posts/:postName", (req, res) => {
     const storedTitle = _.lowerCase(post.title);
 
     if (storedTitle === requestedTitle) {
-      console.log("Match found");
+      res.render("post", {
+         title: post.title,
+         content: post.content,
+        })
     }
   });
+
 });
 
 app.post("/compose", (req, res) => {
